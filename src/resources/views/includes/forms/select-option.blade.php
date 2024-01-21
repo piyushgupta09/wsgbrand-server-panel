@@ -49,6 +49,10 @@
       @endforeach
   </select>
 
+  @if (!empty($note))  
+    <small class="ps-2 font-quick">{{ $note }}</small>
+  @endif
+
   <!-- Label for the select input field -->
   @if (!empty($label))  
     <label for="floating{{ $modelName }}{{ $name }}" class="ps-4 font-quick">{{ $label }}</label>
@@ -58,9 +62,5 @@
   @error($name)
       <span class="input_val_error">{{ $message }}</span>
   @enderror
-
-  @if (!empty($note))  
-    <span class="small ps-2 font-quick">{{ $note }}</span>
-  @endif
 
 </div>

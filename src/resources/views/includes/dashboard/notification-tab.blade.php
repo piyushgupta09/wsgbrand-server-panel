@@ -2,7 +2,7 @@
     <button 
         id="{{ $name }}-tab" 
         type="button" role="tab" 
-        class="nav-link {{ $first ? 'active' : '' }}" 
+        class="nav-link fw-bold font-title {{ $first ? 'active' : '' }}" 
         data-bs-toggle="tab" 
         data-bs-target="#{{ $name }}-tab-pane"
         aria-controls="{{ $name }}-tab-pane" 

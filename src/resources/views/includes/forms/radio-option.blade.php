@@ -26,23 +26,37 @@
     };
 @endphp
 
-<div class="d-flex flex-column col-6">
+<div class="d-flex flex-column mb-3 {{ $p_style }}">
     <div class="border rounded px-2 py-1">
-        <div class="small text-muted">Choose Status</div>
-        <div class="d-flex justify-content-start px-2">
-            @foreach ($options['data'] as $index => $option)
-                <div class="form-check me-3 text-capitalize">
-                    <input 
-                        class="form-check-input" 
-                        type="radio" 
-                        name="active" 
-                        value="{{ $index === 0 ? 1 : 0 }}"
-                        id="radioOption{{ $loop->index }}" 
-                        {{ $isChecked($option, $index) }}
-                    >
-                    <label class="form-check-label" for="radioOption{{ $loop->index }}">{{ $option }}</label>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="small text-muted">Choose Status</div>
+                <div class="d-flex justify-content-start px-2">
+                    @foreach ($options['data'] as $index => $option)
+                        <div class="form-check me-3 text-capitalize">
+                            <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="{{ $name ?? 'active' }}" 
+                                value="{{ $index === 0 ? 1 : 0 }}"
+                                id="radioOption{{ $loop->index }}" 
+                                @if($show) disabled @endif
+                                {{ $isChecked($option, $index) }}
+                            >
+                            <label class="form-check-label" for="radioOption{{ $loop->index }}">{{ $option }}</label>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
+            @if ($note)
+                <div class="col-md-6">
+                    <div class="px-1 d-flex flex-column text-muted small">
+                        {!! $note !!}
+                    </div>
+                </div>
+            @endif
         </div>
+        
     </div>
 </div>
+

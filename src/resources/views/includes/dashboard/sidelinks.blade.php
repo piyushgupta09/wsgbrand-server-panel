@@ -13,7 +13,7 @@
     <div class="collapse" id="{{ $link['id'] }}">
         <ul class="btn-toggle-nav list-unstyled">
             @foreach ($link['child'] as $childlink)
-                {{-- @hasanyrole($childlink['access']) --}}
+                @hasanyrole($childlink['access'])
                     <li class="nav-item ms-3 mt-2">
                         <a href="{{ isset($childlink['route']) ? route($childlink['route']) : '' }}"
                             class="nav-link btn d-flex align-items-center text-white child py-2 {{ isChildLinkActive($childlink['route']) }}">
@@ -23,7 +23,7 @@
                             </span>
                         </a>
                     </li>
-                {{-- @endhasanyrole --}}
+                @endhasanyrole
             @endforeach
         </ul>
     </div>

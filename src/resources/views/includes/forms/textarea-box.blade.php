@@ -11,6 +11,9 @@
    @error($name) : Laravel Blade directive. If there is a validation error associated with this field name, the error message will be displayed.
 --}}
 <div class="mb-3">
+  @if (!empty($label))  
+    <label class="ps-2 small fw-normal">{{ $label }}</label>
+  @endif
   <textarea 
     class="form-control {{ empty($style) ? '' : $style }}"
     {{ empty($attribute) ? '' : implode(' ', $attribute)  }} 
@@ -19,15 +22,11 @@
     id="input{{ $modelName }}{{ $name }}"
     rows="{{ $rows }}"
     @if($show) disabled @endif
-   >{{ empty($model) ? old($name) : $model->$name }}</textarea>
+   >{{ empty($model) ? ($default ? $default : old($name)) : $model->$name }}</textarea>
 
   <!-- Display validation error message if any -->
   @error($name)
       <span class="input_val_error">{{ $message }}</span>
   @enderror
-
-  @if (!empty($note))  
-    <span class="small ps-2 font-quick">{{ $note }}</span>
-  @endif
 
 </div>

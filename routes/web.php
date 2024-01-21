@@ -28,10 +28,7 @@ Route::middleware(['web'])->group(function () {
 
         // Panel Dashboard
         Route::get('panel/dashboard', [DashboardController::class, 'index'])->name('panel.dashboard');
-        
-        Route::view('/pusher', 'panel::pusher.index')->name('pusher.index');
-        Route::view('/pusher/show', 'panel::pusher.show')->name('pusher.show');
-        Route::post('/pusher/push', [PusherController::class, 'push'])->name('pusher.push');
+        Route::get('/pusher', [PusherController::class, 'push'])->name('pusher.push');
 
         Route::get('notifications', [NotificationsController::class, 'index'])->name('notifications.index');
         Route::get('activitylogs', [ActivitylogController::class, 'index'])->name('activitylogs.index');

@@ -2,12 +2,29 @@
     role="tabpanel" aria-labelledby="{{ $name }}-tab" tabindex="0">
     <div class="d-flex flex-column h-100">
         <ul class="list-group flex-fill">
-            @foreach ($notifications[$name]['unread'] as $notification)
-                @include('panel::includes.dashboard.notification-item-unread')
+
+            @foreach ($notifications['unread'] as $notification)
+                <div class="list-group-item rounded-0 px-3 py-2 border-bottom btn" 
+                    style="background-color: rgb(162, 193, 246)"
+                    wire:click="markAsRead('{{ $notification['id'] }}')"
+                >
+                    <p class="mb-0 fw-bold font-quick text-uppercase ls-1">{{ $notification['title'] }}</p>
+                    <p class="mb-0 font-quick">{{ $notification['message'] }}</p>
+                    <p class="mb-0 smaller font-quick text-end">{{ $notification['time'] }}</p>
+                </div>
             @endforeach
-            @foreach ($notifications[$name]['read'] as $notification)
-                @include('panel::includes.dashboard.notification-item-read')
+
+            @foreach ($notifications['read'] as $notification)
+                <div class="list-group-item rounded-0 px-3 py-2 border-bottom btn" 
+                    style="background-color: rgb(162, 193, 246)"
+                    wire:click="markAsRead('{{ $notification['id'] }}')"
+                >
+                    <p class="mb-0 fw-bold font-quick text-uppercase ls-1">{{ $notification['title'] }}</p>
+                    <p class="mb-0 font-quick">{{ $notification['message'] }}</p>
+                    <p class="mb-0 smaller font-quick text-end">{{ $notification['time'] }}</p>
+                </div>
             @endforeach
+
         </ul>
         <a href="{{ route('notifications',[ 'type' =>  $name ]) }}" 
             class="btn btn-outline-dark rounded-0">

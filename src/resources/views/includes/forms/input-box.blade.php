@@ -18,11 +18,16 @@
     @if($show) disabled @endif
     id="floating{{ $modelName }}{{ $name }}"
     type="{{ empty($type) ? 'text' : $type }}" 
+    @if($type == 'number') step="any" @endif
     class="form-control {{ empty($style) ? '' : $style }}" 
     {{ empty($attribute) ? '' : implode(' ', $attribute)  }}
     value="{{ empty($model) ? (isset($default) ? $default : old($name)) : $model->$name }}" 
     placeholder="{{ empty($placeholder) ? '' : $placeholder }}" 
   >
+
+  @if (!empty($note))  
+    <small class="ps-2 font-quick">{{ $note }}</small>
+  @endif
 
   @if (!empty($label))  
     <label for="floating{{ $modelName }}{{ $name }}" class="ps-4 font-quick">{{ $label }}</label>
@@ -32,9 +37,5 @@
   @error($name)
       <span class="input_val_error">{{ $message }}</span>
   @enderror
-
-  @if (!empty($note))  
-    <span class="small ps-2 font-quick">{{ $note }}</span>
-  @endif
 
 </div>

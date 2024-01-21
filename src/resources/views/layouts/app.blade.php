@@ -14,7 +14,7 @@
     <link rel="apple-touch-startup-image" href="{{ asset('logo.png') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}">
-
+    
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     @yield('styles')
@@ -28,6 +28,11 @@
 
         @yield('main')
 
+        @if (request()->routeIs('panel.dashboard'))
+            @include('panel::includes.pwa-install-alert')
+            @vite('resources/js/pwa.js')
+        @endif
+
     </div>
 
 @endsection
@@ -36,5 +41,30 @@
 
     @yield('scripts')
     @livewireScripts()
+
+    <audio id="notification-bell">
+        <source src="{{asset('storage/assets/notification.mp3')}}" type="audio/mpeg">
+    </audio>    
+
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        var pusherKey = '{{ env('PUSHER_APP_KEY') }}';
+        var pusherChannel = '{{ env('PUSHER_APP_CHANNEL') }}';
+        var pusherEvent = '{{ env('PUSHER_APP_EVENT') }}';
+        Pusher.logToConsole = true;
+        var pusher = new Pusher(pusherKey, { cluster: 'ap2' });
+        var channel = pusher.subscribe(pusherChannel);
+        channel.bind(pusherEvent, function(data) {
+            console.log(JSON.stringify(data));
+            Livewire.dispatch('updateNotificationCount', data); 
+            enableAutoplay();
+        });
+
+        var bell = document.getElementById("notification-bell");
+        function enableAutoplay() {
+            bell.autoplay = true;
+            bell.load();
+        }
+    </script>
 
 @endsection

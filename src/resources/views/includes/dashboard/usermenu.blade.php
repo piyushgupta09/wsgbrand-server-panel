@@ -1,28 +1,35 @@
-<ul class="nav flex-column justify-content-end mb-2 font-title">
+<ul id="appMenuList" 
+    class="nav nav-pills nav-sidebar flex-column" {{-- mb-3  --}}
+    data-widget="treeview" role="menu" data-accordion="false">
+    
     @foreach (config('panel.applinks') as $link)
         @include('panel::includes.dashboard.sidelink')
     @endforeach
+
 </ul>
 
-<ul class="nav flex-column bg-danger "
+<ul id="userMenuList"
+    class="nav nav-pills nav-sidebar flex-column text-bg-primary" 
+    data-widget="treeview" role="menu" data-accordion="false"
     style="margin-left: -0.5rem; /* compensating sidebar padding-start: 0.5rem */">
 
-    <li class="nav-item ps-2">
-        
+    <li class="font-quick">
+
         <button 
-            class="nav-link btn d-flex align-items-center text-white parent py-2"
-            id="dropdownUsermenu" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{{ Auth::user()->getProfileImage() }}" width="32" height="32" class="nav-icon me-3">
-            <span class="d-flex justify-content-between align-items-center flex-fill">
-                <span class="text-capitalize fw-500 overflow-hidden max-line-2" style="max-width: 180px">
-                    {{ Auth::user()->name }}
-                </span>
-                <i class="bi bi-chevron-up pt-1"></i>
-            </span>
+            type="button" class="nav-link text-start d-flex ms-1 pe-0"
+            id="dropdownUsermenu" data-bs-toggle="dropdown" aria-expanded="false"> 
+            <div style="min-width: 50px;" class="text-center my-auto">
+                <img src="{{ Auth::user()->getProfileImage() }}" alt="user profile image" 
+                    width="32" height="32" class="nav-icon rounded-circle">
+            </div>
+            <p class="ps-2 ls-1 text-capitalize fw-bold text-white flex-fill align-items-center d-flex justify-content-between">
+                {{ Auth::user()->name }}
+                <i class="bi bi-chevron-up mt-1"></i>
+            </p>
         </button>
 
-        <ul id="userMenuListDropup" style="width: 280px;"
-            class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow border-0 rounded-0" 
+        <ul id="userMenuListDropup" 
+            class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start w-100 shadow border-0 rounded-0" 
             aria-labelledby="dropdownUsermenu">
 
             @foreach (config('panel.userlinks') as $action)

@@ -1,6 +1,10 @@
 @php
     $title = $modelName;
     switch ($title) {
+        case 'sr': $title = 'Sale Return'; break;
+        case 'pr': $title = 'Purchase Return'; break;
+        case 'po': $title = 'Purchase Order'; break;
+        case 'so': $title = 'Sale Order'; break;
         default: break;
     }
 @endphp

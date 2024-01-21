@@ -7,7 +7,7 @@
         @endforeach
 
         @foreach (config('panel.modulelinks') as $link)
-            {{-- @hasanyrole($link['access']) --}}
+            @hasanyrole($link['access'])
                 @if (isset($link['module']))
                     <li class="nav-item">
                         <div class="smaller text-uppercase font-title text-white py-2 ps-3">
@@ -21,7 +21,7 @@
                         @include('panel::includes.dashboard.sidelink')
                     @endif
                 @endif
-            {{-- @endhasanyrole --}}
+            @endhasanyrole
         @endforeach
 
     </ul>
@@ -45,7 +45,7 @@
 
     .nav-item .nav-link.parent:hover,
     .nav-item .nav-link.parent.active {
-        background-color: #ea3941;
+        background-color: #0d6efd;
     }
 
     .nav-item .nav-link.child:hover,

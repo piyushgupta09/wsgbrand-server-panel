@@ -2,9 +2,10 @@
 
 namespace Fpaipl\Panel\Http\Livewire;
 
-use Illuminate\Support\Str;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Schema;
 
 class Datatables extends Component
 {
@@ -152,7 +153,16 @@ class Datatables extends Component
         }
 
         // Default Sorted option added     
-        $query = $query->orderBy($this->sortByColumn, $this->sortInOrder)->orderBy('updated_at', 'desc');
+        if (Schema::hasColumn((new $this->model)->getTable(), $this->sortByColumn)) {
+            if (Schema::hasColumn((new $this->model)->getTable(), 'updated_at')) {
+                $query = $query->orderBy($this->sortByColumn, $this->sortInOrder)
+                               ->orderBy('updated_at', 'desc');
+            } else {
+                $query = $query->orderBy($this->sortByColumn, $this->sortInOrder);
+            }
+        } elseif (Schema::hasColumn((new $this->model)->getTable(), 'updated_at')) {
+            $query = $query->orderBy('updated_at', 'desc');
+        }
 
         // Search Query
         if($this->features['search']['show'][$this->activePage]){

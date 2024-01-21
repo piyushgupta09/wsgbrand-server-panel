@@ -30,7 +30,6 @@
 @section('main')
     <br>
     <h1>Pusher Test</h1>
-    <a href="{{ route('pusher.index') }}">Send another message</a>
     <div id="messageContainer"></div>
     <p>
         Try publishing an event to channel <code>Test-channel</code>
