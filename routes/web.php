@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Fpaipl\Panel\Http\Controllers\JobController;
+use Fpaipl\Panel\Http\Controllers\PusherController;
 use Fpaipl\Panel\Http\Controllers\DashboardController;
 use Fpaipl\Panel\Http\Controllers\FailedjobController;
 use Fpaipl\Panel\Http\Controllers\ActivitylogController;
@@ -27,6 +28,10 @@ Route::middleware(['web'])->group(function () {
 
         // Panel Dashboard
         Route::get('panel/dashboard', [DashboardController::class, 'index'])->name('panel.dashboard');
+        
+        Route::view('/pusher', 'panel::pusher.index')->name('pusher.index');
+        Route::view('/pusher/show', 'panel::pusher.show')->name('pusher.show');
+        Route::post('/pusher/push', [PusherController::class, 'push'])->name('pusher.push');
 
         Route::get('notifications', [NotificationsController::class, 'index'])->name('notifications.index');
         Route::get('activitylogs', [ActivitylogController::class, 'index'])->name('activitylogs.index');
@@ -37,7 +42,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('activitylogs/{activitylog}', [ActivitylogController::class, 'show'])->name('activitylogs.show');
         Route::get('jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
         Route::get('failedjobs/{failedjob}', [FailedjobController::class, 'show'])->name('failedjobs.show');
-
+        
 
     });
 

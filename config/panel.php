@@ -77,6 +77,13 @@ return [
                     'position' => 4,
                     'access' => 'admin',
                 ],
+                [
+                    'icon' => 'bi bi-arrow-right-short text-white',
+                    'name' => 'Pusher',
+                    'route' => 'pusher.index',
+                    'position' => 5,
+                    'access' => 'admin',
+                ],
             ],
         ],
 

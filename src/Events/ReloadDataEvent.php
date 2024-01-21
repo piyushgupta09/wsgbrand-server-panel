@@ -15,7 +15,6 @@ class ReloadDataEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-
     public $channel;
 
     public function __construct($message)
@@ -24,6 +23,7 @@ class ReloadDataEvent implements ShouldBroadcast
         $this->message = $message;
     }
 
+    
     public function broadcastOn()
     {
         return new Channel($this->channel);
