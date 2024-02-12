@@ -9,6 +9,7 @@ use Fpaipl\Panel\Http\Livewire\AppToast;
 use Fpaipl\Panel\Http\Livewire\Datatables;
 use Fpaipl\Panel\View\Components\BulkSelect;
 use Fpaipl\Panel\Http\Livewire\Notifications;
+use Fpaipl\Panel\Http\Livewire\AddSearchSelect;
 use Fpaipl\Panel\Http\Livewire\NotificationBell;
 use Fpaipl\Panel\View\Components\DependentModel;
 use Fpaipl\Panel\Console\Commands\ModuleSeedCommand;
@@ -39,6 +40,7 @@ class PanelServiceProvider extends ServiceProvider {
         ]);
         
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'panel');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
@@ -53,7 +55,7 @@ class PanelServiceProvider extends ServiceProvider {
         Livewire::component('app-toast', AppToast::class);
         Livewire::component('datatables', Datatables::class);
         Livewire::component('notifications', Notifications::class);
-        Livewire::component('notification-bell', NotificationBell::class);
+        Livewire::component('add-search-select', AddSearchSelect::class);
 
         $this->publishes([
             __DIR__.'/../config/panel.php' => config_path('panel.php'),

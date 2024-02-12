@@ -5,6 +5,8 @@ namespace Fpaipl\Panel\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class AdminNotification extends Notification implements ShouldQueue
@@ -16,14 +18,15 @@ class AdminNotification extends Notification implements ShouldQueue
         protected string $message,
     ) {}
 
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
-        return ['mail', 'database'];
+        $via = ['mail', 'database'];
+        if ($notifiable->pushSubscriptions()->exists()) {
+            $via[] = WebPushChannel::class;
+        }
+        return $via;
     }
 
-    /**
-     * Get the array representation of the notification.
-     */
     public function toDatabase($notifiable)
     {
         return [
@@ -39,5 +42,13 @@ class AdminNotification extends Notification implements ShouldQueue
         return (new MailMessage)
                 ->subject($this->title)
                 ->markdown('panel::mail.admin-alert', ['message' => $this->message]);
+    }
+
+    public function toWebPush($notifiable, $notification)
+    {
+        return (new WebPushMessage)
+            ->title($this->title)
+            ->body($this->message)
+            ->action('My Dashboard', 'panel.dashboard');
     }
 }

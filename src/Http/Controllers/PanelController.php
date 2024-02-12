@@ -261,7 +261,7 @@ abstract class PanelController extends BaseController
         }
 
         if (in_array($this->model, [
-            'App\Models\User', // id
+            'App\Models\User', // uuid
             'Fpaipl\Authy\Models\Profile', // id
             'Fpaipl\Authy\Models\Account', // id
             
@@ -269,17 +269,28 @@ abstract class PanelController extends BaseController
             'Fpaipl\Prody\Models\Material', // id
             'Fpaipl\Prody\Models\Unit', // id
             'Fpaipl\Prody\Models\Tax', // id
+
+            'Fpaipl\Prody\Models\Overhead', // id
+            'Fpaipl\Prody\Models\Fixedcost', // sid
+            'Fpaipl\Prody\Models\Consumable', // sid
+            
+            'Fpaipl\Brandy\Models\Party', // sid
+            'Fpaipl\Brandy\Models\Employee', // sid
+
         ])) {
 
             if (in_array($this->model, [
-                'Fpaipl\Prody\Models\Demo', // sid
+                'App\Models\User', // uuid
             ])) {
-                $query = $query->where('sid', $request->route()->parameters()[$this->param]);            
-            } else {
-                
-                // Fpaipl\Prody\Models\Brand
-                // Fpaipl\Prody\Models\Category
+                $query = $query->where('uuid', $request->route()->parameters()[$this->param]);   
 
+            } else if (in_array($this->model, [
+                'Fpaipl\Brandy\Models\Party', // sid
+                'Fpaipl\Brandy\Models\Employee', // sid
+                ])) {
+                $query = $query->where('sid', $request->route()->parameters()[$this->param]);   
+                         
+            } else {
                 $query = $query->where('id', $request->route()->parameters()[$this->param]);
             }
             

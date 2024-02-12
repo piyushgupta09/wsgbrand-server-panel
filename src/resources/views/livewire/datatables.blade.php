@@ -162,9 +162,10 @@
                         </tr>
 
                         <!-- Expandable View by Row Action -->
-                        @if (Str::afterLast($buttonsTable['view']['type'], 'action-') == 'toggle')
+                        @if (isset($buttonsTable['view']) && Str::afterLast($buttonsTable['view']['type'], 'action-') == 'toggle')
                             @include('panel::includes.' . $features['row_actions']['type']['collapse'])
                         @endif
+
 
                     @endforeach
                 @endif

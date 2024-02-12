@@ -6,23 +6,41 @@
             @include('panel::includes.dashboard.sidelink')
         @endforeach
 
-        @foreach (config('panel.modulelinks') as $link)
-            @hasanyrole($link['access'])
-                @if (isset($link['module']))
-                    <li class="nav-item">
-                        <div class="smaller text-uppercase font-title text-white py-2 ps-3">
-                            <p class="mb-1 ls-1">{{ $link['module'] }}</p>
-                        </div>
-                    </li>
-                @else
-                    @if (count($link['child']))
-                        @include('panel::includes.dashboard.sidelinks')
+        @auth
+            @foreach (config('panel.modulelinks') as $link)
+                @if (auth()->user()->isSuperAdmin())
+                    @if (isset($link['module']))
+                        <li class="nav-item">
+                            <div class="smaller text-uppercase font-title text-white py-2 ps-3">
+                                <p class="mb-1 ls-1">{{ $link['module'] }}</p>
+                            </div>
+                        </li>
                     @else
-                        @include('panel::includes.dashboard.sidelink')
+                        @if (count($link['child']))
+                            @include('panel::includes.dashboard.sidelinks')
+                        @else
+                            @include('panel::includes.dashboard.sidelink')
+                        @endif
                     @endif
+                @else
+                    @hasanyrole($link['access'])
+                        @if (isset($link['module']))
+                            <li class="nav-item">
+                                <div class="smaller text-uppercase font-title text-white py-2 ps-3">
+                                    <p class="mb-1 ls-1">{{ $link['module'] }}</p>
+                                </div>
+                            </li>
+                        @else
+                            @if (count($link['child']))
+                                @include('panel::includes.dashboard.sidelinks')
+                            @else
+                                @include('panel::includes.dashboard.sidelink')
+                            @endif
+                        @endif
+                    @endhasanyrole
                 @endif
-            @endhasanyrole
-        @endforeach
+            @endforeach
+        @endauth
 
     </ul>
 
@@ -45,7 +63,7 @@
 
     .nav-item .nav-link.parent:hover,
     .nav-item .nav-link.parent.active {
-        background-color: #0d6efd;
+        background-color: #af3b46;
     }
 
     .nav-item .nav-link.child:hover,

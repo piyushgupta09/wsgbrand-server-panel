@@ -39,6 +39,9 @@
                     </button>
                     <ul class="dropdown-menu">
                         @foreach (config('panel.create-actions') as $action)
+                            @if (auth()->user()->isSuperAdmin())
+                                <li><a class="dropdown-item" href="{{ route($action['route']) }}">{{ $action['name'] }}</a></li>
+                            @endif
                             @hasanyrole($action['access'])
                                 <li><a class="dropdown-item" href="{{ route($action['route']) }}">{{ $action['name'] }}</a></li>
                             @endhasanyrole
@@ -49,7 +52,7 @@
                 @include('panel::includes.dashboard.fullscreen')
 
                 @php
-                    $userRoles = Auth::user()->roles->pluck('name')->toArray();
+                    $userRoles = Auth::user()->getRoleNames()->pluck('name')->toArray();
                 @endphp
 
                 @if (in_array('user', $userRoles))

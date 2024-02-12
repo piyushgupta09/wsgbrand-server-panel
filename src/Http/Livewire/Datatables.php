@@ -69,7 +69,7 @@ class Datatables extends Component
     {
         $this->model = $model;
         $this->datatableClass = $datatableClass;
-
+        
         $this->prepareModelDatatable();
         $this->setInitialDefaults();
         $this->fetchData();

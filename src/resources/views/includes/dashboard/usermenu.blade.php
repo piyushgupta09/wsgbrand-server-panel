@@ -9,27 +9,27 @@
 </ul>
 
 <ul id="userMenuList"
-    class="nav nav-pills nav-sidebar flex-column text-bg-primary" 
+    class="nav nav-pills nav-sidebar flex-column" 
     data-widget="treeview" role="menu" data-accordion="false"
     style="margin-left: -0.5rem; /* compensating sidebar padding-start: 0.5rem */">
 
-    <li class="font-quick">
-
+    <li class="d-flex align-items-center font-quick w-100 bg-brand">
+        
         <button 
-            type="button" class="nav-link text-start d-flex ms-1 pe-0"
+            type="button" class="nav-link text-start d-flex align-items-center ms-1 pe-0 flex-fill"
             id="dropdownUsermenu" data-bs-toggle="dropdown" aria-expanded="false"> 
             <div style="min-width: 50px;" class="text-center my-auto">
                 <img src="{{ Auth::user()->getProfileImage() }}" alt="user profile image" 
                     width="32" height="32" class="nav-icon rounded-circle">
             </div>
-            <p class="ps-2 ls-1 text-capitalize fw-bold text-white flex-fill align-items-center d-flex justify-content-between">
+            <div class="ps-2 pe-3 text-capitalize fw-bold text-white flex-fill align-items-center d-flex justify-content-between">
                 {{ Auth::user()->name }}
                 <i class="bi bi-chevron-up mt-1"></i>
-            </p>
+            </div>
         </button>
 
         <ul id="userMenuListDropup" 
-            class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start w-100 shadow border-0 rounded-0" 
+            class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow border-0 rounded-0" 
             aria-labelledby="dropdownUsermenu">
 
             @foreach (config('panel.userlinks') as $action)

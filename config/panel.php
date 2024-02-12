@@ -79,9 +79,16 @@ return [
                 ],
                 [
                     'icon' => 'bi bi-arrow-right-short text-white',
-                    'name' => 'Pusher',
-                    'route' => 'pusher.index',
+                    'name' => 'Pusher Initiate',
+                    'route' => 'pusher.push',
                     'position' => 5,
+                    'access' => 'admin',
+                ],
+                [
+                    'icon' => 'bi bi-arrow-right-short text-white',
+                    'name' => 'WPSubscriptions',
+                    'route' => 'webpushs.index',
+                    'position' => 6,
                     'access' => 'admin',
                 ],
             ],

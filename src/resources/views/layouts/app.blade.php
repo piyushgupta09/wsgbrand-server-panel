@@ -20,6 +20,10 @@
     @yield('styles')
     @livewireStyles()
 
+    {{-- @auth
+    	   <script src="{{ asset('js/enable-push.js') }}" defer></script>
+	@endauth --}}
+
 @endsection
 
 @section('body')
@@ -31,6 +35,7 @@
         @if (request()->routeIs('panel.dashboard'))
             @include('panel::includes.pwa-install-alert')
             @vite('resources/js/pwa.js')
+            @vite('resources/js/webpush.js')
         @endif
 
     </div>
@@ -42,7 +47,8 @@
     @yield('scripts')
     @livewireScripts()
 
-    <audio id="notification-bell">
+
+    {{-- <audio id="notification-bell">
         <source src="{{asset('storage/assets/notification.mp3')}}" type="audio/mpeg">
     </audio>    
 
@@ -65,6 +71,6 @@
             bell.autoplay = true;
             bell.load();
         }
-    </script>
+    </script> --}}
 
 @endsection

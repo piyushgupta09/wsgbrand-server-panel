@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Fpaipl\Panel\Http\Controllers\JobController;
 use Fpaipl\Panel\Http\Controllers\PusherController;
+use Fpaipl\Panel\Http\Controllers\SearchController;
+use Fpaipl\Panel\Http\Controllers\WebpushController;
 use Fpaipl\Panel\Http\Controllers\DashboardController;
 use Fpaipl\Panel\Http\Controllers\FailedjobController;
+use Fpaipl\Panel\Http\Coordinators\WebPushCoordinator;
 use Fpaipl\Panel\Http\Controllers\ActivitylogController;
 use Fpaipl\Panel\Http\Controllers\NotificationsController;
 
@@ -26,14 +29,20 @@ Route::middleware(['web'])->group(function () {
     // Auth Routes
     Route::middleware(['auth','verified'])->group(function () {
 
+
+        Route::post('/push', [WebPushCoordinator::class, 'push'])->name('push');
+        Route::post('/push_store', [WebPushCoordinator::class, 'store']);
+
         // Panel Dashboard
         Route::get('panel/dashboard', [DashboardController::class, 'index'])->name('panel.dashboard');
         Route::get('/pusher', [PusherController::class, 'push'])->name('pusher.push');
+        Route::get('actions/search', [SearchController::class, 'actionSearch'])->name('actions.search');        
 
         Route::get('notifications', [NotificationsController::class, 'index'])->name('notifications.index');
         Route::get('activitylogs', [ActivitylogController::class, 'index'])->name('activitylogs.index');
         Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
         Route::get('failedjobs', [FailedjobController::class, 'index'])->name('failedjobs.index');
+        Route::get('webpushs', [WebpushController::class, 'index'])->name('webpushs.index');
 
         Route::get('notifications/{notification}', [NotificationsController::class, 'show'])->name('notifications.show');
         Route::get('activitylogs/{activitylog}', [ActivitylogController::class, 'show'])->name('activitylogs.show');
