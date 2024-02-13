@@ -9,6 +9,6 @@
             <span class="px-1">|</span>
             <span>{{ $selectedParty->user->name }}</span>
         </div>
-        <p class="mb-0 small">{{ $selectedParty->address() }}</p>
+        <p class="mb-0 small">{{ $selectedParty->address()->print }}</p>
     </div>
 </div>
