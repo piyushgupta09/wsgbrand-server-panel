@@ -18,7 +18,7 @@
                 type="search" 
                 wire:model.live="search" 
                 class="form-control border-0 rounded-0 text-bg-light w-100 h-100" 
-                placeholder="Search for a party..."
+                placeholder="{{ $label }}"
                 autocomplete="off"
             >    
             @if ($this->filteredParties->isNotEmpty())

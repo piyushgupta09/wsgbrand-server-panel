@@ -9,6 +9,8 @@
             <span class="px-1">|</span>
             <span>{{ $selectedParty->user->name }}</span>
         </div>
-        <p class="mb-0 small">{{ $selectedParty->address()?->print }}</p>
+        @if (get_class($selectedParty) == Fpaipl\Brandy\Models\Party::class)
+            <p class="mb-0 small">{{ $selectedParty->address()?->print }}</p>
+        @endif
     </div>
 </div>

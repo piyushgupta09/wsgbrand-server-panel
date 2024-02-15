@@ -9,6 +9,7 @@ class AddSearchSelect extends Component
 {
     public $search;
     public $selectedParty;
+    public $label;
 
     public $partyName;
     public $partyMobile;
@@ -18,8 +19,9 @@ class AddSearchSelect extends Component
     public $datalist;
     public $modelCreateRoute;
 
-    public function mount($datalist, $modelCreateRoute)
+    public function mount($datalist, $label, $modelCreateRoute)
     {
+        $this->label = $label;
         $this->datalist = $datalist;
         $this->modelCreateRoute = $modelCreateRoute;
         $this->search = '';
@@ -30,7 +32,7 @@ class AddSearchSelect extends Component
     {
         return strlen($this->search) > 2 
             ? $this->datalist->filter(function ($party) {
-                return stripos($party->business, $this->search) !== false;
+                return stripos($party->tags, $this->search) !== false;
             }) : collect();
     }
 

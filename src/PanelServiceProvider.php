@@ -10,10 +10,10 @@ use Fpaipl\Panel\Http\Livewire\Datatables;
 use Fpaipl\Panel\View\Components\BulkSelect;
 use Fpaipl\Panel\Http\Livewire\Notifications;
 use Fpaipl\Panel\Http\Livewire\AddSearchSelect;
-use Fpaipl\Panel\Http\Livewire\NotificationBell;
 use Fpaipl\Panel\View\Components\DependentModel;
 use Fpaipl\Panel\Console\Commands\ModuleSeedCommand;
 use Fpaipl\Panel\View\Components\Dashboard\Adminlte;
+use Fpaipl\Panel\Console\Commands\CleanTempDirectory;
 use Fpaipl\Panel\Console\Commands\DeleteModuleCommand;
 use Fpaipl\Panel\Console\Commands\MakeNewModuleCommand;
 use Fpaipl\Panel\View\Components\SelectedRecordsAlertBox;
@@ -37,6 +37,7 @@ class PanelServiceProvider extends ServiceProvider {
             ModuleSeedCommand::class,
             MakeNewModuleCommand::class,
             DeleteModuleCommand::class,
+            CleanTempDirectory::class,
         ]);
         
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
