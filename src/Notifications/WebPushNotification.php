@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notification;
 use Fpaipl\Panel\Services\WebPushMessage;
 use Fpaipl\Panel\Services\WebPushChannel;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class WebPushNotification extends Notification implements ShouldQueue
 {
@@ -20,13 +21,22 @@ class WebPushNotification extends Notification implements ShouldQueue
     public function __construct(
         $title = 'Wsg Brand Notification',
         $body = 'Deshigirl has a new order.',
-        $actionUrl = 'https://app.monaal.com/panel/dashboard',
+        $actionUrl = 'https://app.wsgbrand.in/',
         $iconUrl = '/logo.png'
     ) {
         $this->title = $title;
         $this->body = $body;
         $this->actionUrl = $actionUrl;
         $this->iconUrl = $iconUrl;
+        // Log::info(
+        //     'WebPushNotification',
+        //     [
+        //         'title' => $this->title,
+        //         'body' => $this->body,
+        //         'actionUrl' => $this->actionUrl,
+        //         'iconUrl' => $this->iconUrl,
+        //     ]
+        // );
     }
 
     public function via($notifiable)
@@ -40,7 +50,7 @@ class WebPushNotification extends Notification implements ShouldQueue
             ->title($this->title)
             ->body($this->body)
             ->icon($this->iconUrl)
-            ->action('View App', $this->actionUrl)
+            ->action('View App', config('app.client_url'))
             ->data(['url' => $this->actionUrl]);
     }
 

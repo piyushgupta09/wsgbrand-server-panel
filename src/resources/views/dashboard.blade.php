@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="container">
+        {{-- <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- <div class="col-md-4">
             <div class="card rounded-0 shadow-none" style="border-left: solid #3a8e94 10px;">
