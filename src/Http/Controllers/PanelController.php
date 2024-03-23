@@ -273,6 +273,10 @@ abstract class PanelController extends BaseController
             'Fpaipl\Prody\Models\Overhead', // id
             'Fpaipl\Prody\Models\Fixedcost', // sid
             'Fpaipl\Prody\Models\Consumable', // sid
+            'Fpaipl\Prody\Models\Strategy', // sid
+            'Fpaipl\Prody\Models\Discount', // sid
+            'Fpaipl\Prody\Models\RefundPolicy', // sid
+            'Fpaipl\Prody\Models\ReturnPolicy', // sid
             
             'Fpaipl\Brandy\Models\Party', // sid
             'Fpaipl\Brandy\Models\Employee', // sid

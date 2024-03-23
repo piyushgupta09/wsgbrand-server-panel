@@ -267,12 +267,12 @@ abstract class ModelDatatable implements Datatable
                 'thead' => [
                     'view' => 'buttons.sortit',
                     'value' => '',
-                    'align' => 'center',
+                    'align' => '',
                 ],
                 'tbody' => [
                     'view' => 'cells.serial-count',
                     'value' => 'getTableRowId',
-                    'align' => 'center',
+                    'align' => '',
                 ],
                 'importable' => false,
                 'exportable' => [
@@ -487,7 +487,7 @@ abstract class ModelDatatable implements Datatable
                 'tbody' => [
                     'view' => 'cells.image-value',
                     'value' => '',
-                    'align' => 'center',
+                    'align' => '',
                 ],
                 'viewable' => [
                     'active' => true,

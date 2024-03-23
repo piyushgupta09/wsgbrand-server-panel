@@ -144,7 +144,7 @@
 
         @if (!in_array(get_class($model), config('panel.view-only-models', [])))
             @php
-                $datatable = 'Fpaipl\\Brandy\\Datatables\\' . Str::title($modelName) . 'Datatable';
+                $datatable = 'Fpaipl\\Prody\\Datatables\\' . Str::title($modelName) . 'Datatable';
                 $constName = $datatable . '::DUPLICATE';
             @endphp
             <div class="d-flex justify-content-between mb-3">

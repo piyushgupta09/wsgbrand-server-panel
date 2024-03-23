@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Fpaipl\Panel\Http\Controllers\JobController;
+use Fpaipl\Panel\Http\Controllers\SyncController;
 use Fpaipl\Panel\Http\Controllers\PusherController;
 use Fpaipl\Panel\Http\Controllers\SearchController;
 use Fpaipl\Panel\Http\Controllers\WebpushController;
@@ -29,6 +30,7 @@ Route::middleware(['web'])->group(function () {
     // Auth Routes
     Route::middleware(['auth','verified'])->group(function () {
 
+        Route::get('sync/index', [SyncController::class, 'index'])->name('sync.index');
 
         Route::post('/push', [WebPushCoordinator::class, 'push'])->name('push');
         Route::post('/push_store', [WebPushCoordinator::class, 'store']);

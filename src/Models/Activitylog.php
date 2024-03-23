@@ -53,7 +53,12 @@ class Activitylog extends Model
                 break;
     
             case 'properties':
-                return json_encode(json_decode($this->properties)->attributes, JSON_PRETTY_PRINT);
+                // $properties = json_decode($this->properties);
+                // if ($properties && is_object($properties->attributes)) {
+                //     return json_encode($properties->attributes, JSON_PRETTY_PRINT);
+                // } else {
+                    return 'N/A';
+                // }
 
             default: 
                 return $this->key;
