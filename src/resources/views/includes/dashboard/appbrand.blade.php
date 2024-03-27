@@ -5,7 +5,7 @@
             <span class="flex-fill ps-3 font-text lh-1">
                 <div class="d-flex align-items-center">
                     <span class="fw-bold font-quick fs-4 flex-fill">{{ config('brand.name') }}</span>
-                    <span class="small text-muted">v1.0</span>
+                    <span class="small text-muted">{{ config('brand.version') }}</span>
                 </div>
                 <span class="small text-muted">{{ config('brand.tagline') }}</span>
             </span>
